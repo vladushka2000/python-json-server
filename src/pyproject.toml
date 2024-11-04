@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "python-json-server"
+version = "1.0.0"
+description = "Моковый JSON-сервер на Python"
+authors = ["vladushka2000"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.115.2"
+uvicorn = "^0.32.0"
+pydantic-settings = "^2.6.0"
+pre-commit = "^4.0.1"
+dependency-injector = "^4.42.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

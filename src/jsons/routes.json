@@ -1,0 +1,20 @@
+{
+  "GET": [
+    "posts/:id/comments/:text",
+    "comments/:id/author/hobbies",
+    "comments/:id/author"
+  ],
+  "POST": [
+    "posts/:id/comments"
+  ],
+  "PUT": [
+    "posts/:id/comments/:id"
+  ],
+  "PATCH": [
+    "posts/:id/comments/:id"
+  ],
+  "DELETE": [
+    "posts/:id/comments/:id",
+    "posts/:id/comments"
+  ]
+}

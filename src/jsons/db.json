@@ -1,0 +1,95 @@
+{
+  "profiles": [
+    {
+      "id": 1,
+      "name": "Robert",
+      "status": "user"
+    },
+    {
+      "id": 2,
+      "name": "Karen",
+      "status": "moderator"
+    },
+    {
+      "id": 3,
+      "name": "Elijah",
+      "status": "user"
+    },
+    {
+      "id": 4,
+      "name": "Linda",
+      "status": "user"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "title 1",
+      "text": "text 1",
+      "author": {
+        "id": 1,
+        "name": "Robert",
+        "status": "user"
+      },
+      "comments": [
+        {
+          "authorId": 2,
+          "text": "new text",
+          "field": "field"
+        },
+        {},
+        {
+          "name": "test",
+          "password": "test"
+        },
+        {
+          "name": "test1",
+          "password": "test1"
+        },
+        {
+          "id": 2,
+          "authorId": 1,
+          "text": "new text new",
+          "field": "field"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "title 2",
+      "text": "text 2",
+      "author": {
+        "id": 4,
+        "name": "Linda",
+        "status": "user"
+      },
+      "comments": []
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "author": {
+        "name": "John",
+        "age": 20,
+        "hobbies": [
+          "tennis",
+          "football"
+        ]
+      },
+      "text": "comment 1"
+    },
+    {
+      "id": 2,
+      "author": {
+        "name": "Ellie",
+        "age": 21,
+        "hobbies": [
+          "tennis",
+          "football"
+        ]
+      },
+      "text": "comment 2"
+    }
+  ]
+}
