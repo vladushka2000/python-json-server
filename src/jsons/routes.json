@@ -1,20 +1,29 @@
 {
   "GET": [
-    "posts/:id/comments/:text",
-    "comments/:id/author/hobbies",
-    "comments/:id/author"
+    {
+      "url_mask": "posts/:id/comments/:text",
+      "return_mask": null,
+      "actual_return": null
+    },
+    {
+      "url_mask": "comments/:id/author/hobbies",
+      "return_mask": null,
+      "actual_return": null
+    },
+    {
+      "url_mask": "comments/:id/author",
+      "return_mask": null,
+      "actual_return": null
+    }
   ],
   "POST": [
-    "posts/:id/comments"
+    {
+      "url_mask": "posts/:id/comments",
+      "return_mask": "posts/:id",
+      "actual_return": "posts/1"
+    }
   ],
-  "PUT": [
-    "posts/:id/comments/:id"
-  ],
-  "PATCH": [
-    "posts/:id/comments/:id"
-  ],
-  "DELETE": [
-    "posts/:id/comments/:id",
-    "posts/:id/comments"
-  ]
+  "PUT": [],
+  "PATCH": [],
+  "DELETE": []
 }

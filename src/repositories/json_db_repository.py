@@ -64,7 +64,7 @@ class JSONDBRepository(base_repository.BaseRepository, base_repository.IsPersist
 
         return self._json_data
 
-    def update(self, data_to_update: dict, new_object: dict, is_patch: bool = False) -> None:
+    def update(self, data_to_update: dict, new_object: dict, is_patch: bool = False) -> dict:
         """
         Обновить данные ресурса
         :param data_to_update: данные, которые будут изменены
@@ -73,17 +73,17 @@ class JSONDBRepository(base_repository.BaseRepository, base_repository.IsPersist
                          True - частичное обновление, False - полное
         """
 
-        if not is_patch:
+        if is_patch:
+            for key in data_to_update:
+                if key in new_object:
+                    data_to_update[key] = new_object[key]
+        else:
             data_to_update.clear()
 
             for key, value in new_object.items():
                 data_to_update[key] = value
 
-            return
-
-        for key in data_to_update:
-            if key in new_object:
-                data_to_update[key] = new_object[key]
+        return data_to_update
 
     def delete(self, data: dict | list[dict | list]) -> None:
         """

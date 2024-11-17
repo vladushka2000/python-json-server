@@ -27,8 +27,21 @@ def _get_route(rest_of_path: str, routes_from_json: dict) -> routes_dto.RoutesMa
 
     for route in routes_from_json:
         if re.fullmatch(route.regex, rest_of_path):
+            return_path = route.return_path.split("/") if route.return_path else None
+            actual_return_path = (
+                route.actual_return_path.split("/") if route.actual_return_path else None
+            )
+
+            if return_path and not actual_return_path:
+                raise ValueError(
+                    "Не задан маршрут до ресурса из которого будет возвращаться значение"
+                )
+
             return routes_dto.RoutesMapDTO(
-                json_path=route.path.split("/"), actual_path=rest_of_path.split("/")
+                json_path=route.path.split("/"),
+                actual_path=rest_of_path.split("/"),
+                return_path=return_path,
+                actual_return_path=actual_return_path,
             )
 
     return None

@@ -51,6 +51,11 @@
           "authorId": 1,
           "text": "new text new",
           "field": "field"
+        },
+        {
+          "id": 1,
+          "authorId": 1,
+          "text": "new text new"
         }
       ]
     },

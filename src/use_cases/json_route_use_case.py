@@ -34,7 +34,14 @@ class JSONRoutesDataKeeperUseCase(base_use_case.UseCase):
             routes_map[method] = []
 
             for route in routes:
-                regex = regex_tool.RegexTool.create_route_regex(route)
-                routes_map[method].append(routes_dto.JSONParsedRoutesDTO(path=route, regex=regex))
+                regex_path = regex_tool.RegexTool.create_route_regex(route["url_mask"])
+                routes_map[method].append(
+                    routes_dto.JSONParsedRoutesDTO(
+                        path=route["url_mask"],
+                        regex=regex_path,
+                        return_path=route["return_mask"],
+                        actual_return_path=route["actual_return"],
+                    )
+                )
 
         return routes_map

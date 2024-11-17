@@ -2,7 +2,6 @@ import dataclasses
 
 from config import json_config
 from interfaces import base_repository, base_use_case
-from models.dto import routes_dto
 
 config = json_config.json_config
 
@@ -15,7 +14,7 @@ class BaseHTTPUseCase(base_use_case.UseCase):
     @dataclasses.dataclass
     class _ResourceFilterDTO:
         """
-        DTO, содержащий данные по ресурсу и фильтре по одному из его полей
+        DTO, содержащий данные по ресурсу и о фильтре по одному из его полей
         """
 
         resource: str
@@ -109,22 +108,23 @@ class BaseHTTPUseCase(base_use_case.UseCase):
 
     def __call__(
         self,
-        paths: routes_dto.RoutesMapDTO,
+        json_path: list[str],
+        actual_path: list[str],
         repository: base_repository.BaseRepository,
         resource: str,
         new_data: dict | list[dict | list] = None,
     ) -> dict | list[dict | list] | None:
         """
         Выполнить логику Use-кейса
-        :param paths: ресурсы, переданные пользователем
+        :param json_path: путь, полученный из json
+        :param actual_path: путь, полученный от воода пользоватеоя
         :param repository: объект репозитория
         :param resource: название ресурса
         :param new_data: новые данные для ресурса
         :return: результат выполнения логики репозитория
         """
 
-        filters = self._create_filters(paths.json_path, paths.actual_path)
-
+        filters = self._create_filters(json_path, actual_path)
         data = self._get_data(repository, resource, filters)
 
         return self._execute_repository_logic(repository, data, new_data)
@@ -174,7 +174,7 @@ class POSTUseCase(BaseHTTPUseCase):
         repository.create(data, new_data)
         repository.persist()
 
-        return
+        return new_data
 
 
 class PUTUseCase(BaseHTTPUseCase):
@@ -196,10 +196,10 @@ class PUTUseCase(BaseHTTPUseCase):
         :return: результат работы репозитория
         """
 
-        repository.update(data, new_data)
+        result = repository.update(data, new_data)
         repository.persist()
 
-        return
+        return result
 
 
 class PATCHUseCase(BaseHTTPUseCase):
@@ -221,10 +221,10 @@ class PATCHUseCase(BaseHTTPUseCase):
         :return: результат работы репозитория
         """
 
-        repository.update(data, new_data, True)
+        result = repository.update(data, new_data, True)
         repository.persist()
 
-        return
+        return result
 
 
 class DELETEUseCase(BaseHTTPUseCase):
@@ -249,4 +249,4 @@ class DELETEUseCase(BaseHTTPUseCase):
         repository.delete(data)
         repository.persist()
 
-        return
+        return data
