@@ -39,7 +39,9 @@ async def mock_get(
     resource = path_data.actual_path[0]
     repository = repository_factory.create(json_config.json_db_path, resource)
 
-    return get_use_case(path_data, repository, resource)
+    return get_use_case(
+        path_data.json_path, path_data.actual_path, repository, resource
+    )
 
 
 @router.post("/{rest_of_path:path}")
