@@ -78,7 +78,11 @@ async def mock_post(
     repository = repository_factory.create(json_config.json_db_path, resource)
 
     result = post_use_case(
-        path_data.json_path, path_data.actual_path, repository, resource, new_data
+        path_data.json_path,
+        path_data.actual_path,
+        repository,
+        resource,
+        new_data
     )
 
     if path_data.return_path and path_data.actual_return_path:
@@ -124,7 +128,13 @@ async def mock_put(
     resource = path_data.actual_path[0]
     repository = repository_factory.create(json_config.json_db_path, resource)
 
-    result = put_use_case(path_data, repository, resource, new_data)
+    result = put_use_case(
+        path_data.json_path,
+        path_data.actual_path,
+        repository,
+        resource,
+        new_data
+    )
 
     if path_data.return_path and path_data.actual_return_path:
         resource = path_data.actual_return_path[0]
@@ -169,7 +179,13 @@ async def mock_patch(
     resource = path_data.actual_path[0]
     repository = repository_factory.create(json_config.json_db_path, resource)
 
-    result = patch_use_case(path_data, repository, resource, new_data)
+    result = patch_use_case(
+        path_data.json_path,
+        path_data.actual_path,
+        repository,
+        resource,
+        new_data
+    )
 
     if path_data.return_path and path_data.actual_return_path:
         resource = path_data.actual_return_path[0]
@@ -212,7 +228,12 @@ async def mock_delete(
     resource = path_data.actual_path[0]
     repository = repository_factory.create(json_config.json_db_path, resource)
 
-    result = delete_use_case(path_data, repository, resource)
+    result = delete_use_case(
+        path_data.json_path,
+        path_data.actual_path,
+        repository,
+        resource
+    )
 
     if path_data.return_path and path_data.actual_return_path:
         resource = path_data.actual_return_path[0]
